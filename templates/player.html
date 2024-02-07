@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'player.css' %}">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="player">
+            <video controls class="video-player">
+                <source src="{{ video.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-title">
+                {{ video.title }}
+            </div>
+        </div>
+
+        <div class="left-bottom">
+            <a href="{% url 'home' %}" class="mb-16">Bosh sahifa</a>
+
+            {% for x in other_videos %}
+            <a href="{% url 'player' x.pk %}" class="link">{{ forloop.counter }}. {{ x.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</body>
+
+</html>
